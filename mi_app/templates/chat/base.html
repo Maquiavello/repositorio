@@ -1,0 +1,16 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chateando</title>
+    <link rel="stylesheet" href="{% static '/estilo/test.css'%}">
+</head>
+<body>
+    <div class="container mt-3">
+        {% block content %} {% endblock %}
+    </div>
+    
+</body>
+<script src="{% static 'js/render.js' %}"></script>
+</html>

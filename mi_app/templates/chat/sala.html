@@ -1,0 +1,71 @@
+{% extends "chat/base.html" %}
+{% load static %}
+{% block content %}
+<script>
+    const CURRENT_USER = "{{ usuario.usuario }}";
+    var sala_id = '{{ sala.id }}'
+</script>
+    <a href="{% url 'menu' %}" class="ts-back-button">
+        <span class="ts-back-icon">←</span>
+        Regresar
+    </a>
+<div class="chat-main-container">
+
+    <div class="ts-chat-container">
+        <div class="chat-header-bar">
+            <div class="chat-header-user">
+                <span class="chat-header-avatar"></span>
+                <div class="chat-header-info">
+                    <span class="chat-header-name">{{ sala.name }} Chat</span>
+                    <span class="chat-header-status">En línea</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="ts-messages-container" id="chat-messages">
+                <div class="ts-message-inner">
+
+                </div>
+
+            <div class="ts-message-inner">
+        
+
+             </div>
+        </div>
+
+        <div class="ts-input-container">
+    <div class="input-options">
+        <span class="input-option">•••</span>
+    </div>
+    
+    <div class="input-with-button">
+        <textarea class="ts-message-input" id="message" placeholder="Pregunta cualquier cosa."></textarea>
+        <button class="ts-send-button" id="btnMessage">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+</div>
+    </div>
+</div>
+
+
+<script>
+    const textarea = document.querySelector('#message');
+
+// Escucha el evento de entrada (input)
+textarea.addEventListener('input', () => {
+  // Restablece la altura para que el scrollHeight se calcule correctamente
+  textarea.style.height = 'auto';
+  // Ajusta la altura del textarea a la altura de su contenido
+  textarea.style.height = `${textarea.scrollHeight}px`;
+});
+</script>
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'js/chat.js' %}"></script>
+<script src="{% static 'js/render.js' %}"></script>
+
+{% endblock %}

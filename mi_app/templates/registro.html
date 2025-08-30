@@ -1,0 +1,49 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'estilo/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% if error %}
+    <div class="ts-error">
+        <p style="color: red;"> ⚠️ {{ error }}</p>
+    </div>
+    {% endif %}
+
+    <div class="ts-container">
+        <div class="ts-header">
+            <div class="ts-logo">Tortilla Scripts</div>
+        </div>
+
+    <div class="form-content">
+        <h1>Registro</h1>
+        <form action="" method="POST">
+        {% csrf_token %}
+        <div class="ts-input-group">
+            <label class="ts-label" for="usuario"></label>
+            <input class="ts-input" type="text" name="usuario" id="usuario" required placeholder="Nombre de Usuario">
+
+            <label class="ts-label" for="correo"></label>
+            <input class="ts-input" type="text" name="correo" id="correo" required placeholder="Correo electronico">
+
+            <label class="ts-label" for="contraseña"></label>
+            <input class="ts-input" type="password" name="contraseña" id="contraseña" required placeholder="Contraseña segura">
+        </div>
+        <button class="ts-button" type="submit">Crear Cuenta</button>
+    </form>
+        
+        
+        <div class="ts-links">
+            <p>¿Ya tienes cuenta? <a class="ts-links" href="{% url 'login' %}">Inicia sesión aquí</a></p>
+        </div>
+
+
+</div>
+
+</div>    
+</body>
+<script src="{% static 'js/render.js' %}"></script>
+</html>

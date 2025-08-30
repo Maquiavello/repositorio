@@ -1,0 +1,44 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'estilo/style.css' %}">
+    <title>Iniciar sesion</title>
+</head>
+<body>
+    
+    {% if error %}
+    <div class="ts-error">
+        <p style="color: red;"> ⚠️ {{ error }}</p>
+    </div>
+    {% endif %}
+
+    <div class="ts-container">
+        <div class="ts-header">
+            <div class="ts-logo">Tortilla Scripts</div>
+        </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h1>Login</h1>
+
+        <div class="ts-input-group">
+            <label class="ts-label" for="usuario"></label>
+            <input class="ts-input" type="text" name="usuario" id="usuario" required placeholder="Tu usuario">
+
+            <label class="ts-label" for="contraseña"></label>
+            <input class="ts-input" type="password" name="contraseña" id="contraseña" required placeholder="Tu contraseña">
+            </div>
+        <button class="ts-button" type="submit">Iniciar Sesión</button>
+    </form>
+
+        <div class="ts-links">
+            <p>¿No tienes cuenta? <a class="ts-link" href="{% url 'registro' %}">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+
+</body>
+<script src="{% static 'js/render.js' %}"></script>
+</html>
