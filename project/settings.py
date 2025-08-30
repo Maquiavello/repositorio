@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 # En desarrollo (DEBUG es True), permite localhost y 127.0.0.1.
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')]
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
 else:
     ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.00.1:8000']
     
