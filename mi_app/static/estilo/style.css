@@ -1,0 +1,196 @@
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-orange: #ea580c;
+            --gray-800: #1f2937;
+            --gray-600: #4b5563;
+            --gray-300: #d1d5db;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--gray-800);
+        }
+        
+        /* CONTENEDOR PRINCIPAL - Estilo Tortilla */
+        .ts-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.05),
+                0 5px 10px rgba(0, 0, 0, 0.02);
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid var(--gray-300);
+        }
+        
+        /* LOGO Y CABECERA */
+        .ts-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .ts-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ts-subtitle {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        /* FORMULARIO */
+        .ts-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .ts-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .ts-label {
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+        
+        .ts-input {
+            padding: 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: var(--white);
+        }
+        
+        .ts-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        /* BOTÓN - Estilo Tortilla */
+        .ts-button {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 0.8rem 6rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content;
+
+
+        }
+        
+        .ts-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .ts-button:active {
+            transform: translateY(0);
+        }
+        
+        /* ENLACES */
+        .ts-links {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-300);
+        }
+        
+        .ts-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .ts-link:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+        
+        /* ERROR STYLE - Discreto pero visible */
+        .ts-error {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #dc2626;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+            z-index: 1000;
+            max-width: 300px;
+            font-size: 0.9rem;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .ts-container {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+            
+            .ts-logo {
+                font-size: 2rem;
+            }
+            
+            .ts-subtitle {
+                font-size: 1rem;
+            }
+            
+            .ts-error {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                max-width: none;
+            }
+        }
+        
+        /* ANIMACIONES SUAVES */
+        @keyframes tsFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .ts-container {
+            animation: tsFadeIn 0.5s ease;
+        }

@@ -1,12 +1,10 @@
+#!/usr/bin/env bash
+
+# Salir inmediatamente si un comando falla
 set -e
 
-echo "📦 Installing dependencies..."
-pip install -r requirements.txt
+# Colectar archivos estáticos
+python manage.py collectstatic --noinput
 
-echo "🔄 Applying migrations..."
+# Ejecutar migraciones
 python manage.py migrate
-
-echo "📁 Collecting static files..."
-python manage.py collectstatic --no-input
-
-echo "✅ Build completed!"

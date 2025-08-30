@@ -1,8 +1,6 @@
 from django.db import models
 
 # Create your models here.
-class proyecto(models.Model):
-    titulo = models.CharField(max_length=100)
 
 class usuarios(models.Model):
     usuario = models.CharField(max_length=50, unique=True)
