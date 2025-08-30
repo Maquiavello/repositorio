@@ -23,7 +23,7 @@ ALLOWED_HOSTS = []
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')]
 else:
-    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.0.0.1:8000']
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.00.1:8000']
     
 # Application definition
 INSTALLED_APPS = [
@@ -71,13 +71,16 @@ TEMPLATES = [
 # Configuración para Channels
 ASGI_APPLICATION = 'project.asgi.application'
 
+# Se agrega la configuración de la URL de Redis en un solo lugar
+REDIS_URL = os.environ.get('REDIS_URL')
+
 if not DEBUG:
     # Usar Redis para la capa de canales en producción
     CHANNEL_LAYERS = {
         'default': {
             'BACKEND': 'channels_redis.core.RedisChannelLayer',
             'CONFIG': {
-                'hosts': [('redis://:' + os.environ.get('REDIS_PASSWORD') + '@' + os.environ.get('REDIS_HOST') + ':' + os.environ.get('REDIS_PORT'))],
+                'hosts': [REDIS_URL],
             },
         },
     }
