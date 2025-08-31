@@ -470,6 +470,6 @@ body {
     display: flex;
 
     align-items: center;
-    gap: 1150px;
+    gap: 950px;
     margin-bottom: 4px; /* Opcional: para dar un poco de espacio debajo del encabezado */
 }
