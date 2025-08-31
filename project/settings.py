@@ -7,14 +7,10 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Se usa 'os.environ.get()' para leer la clave secreta de una variable de entorno en Render.
-# Si no está definida (entorno local), usa una clave de respaldo.
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-xc)k0o7*zzzk7=9!pu#iq7b0j9rj$fmpb%$43z62&&txzf+o^r')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# 'DEBUG' se activa solo si la variable de entorno 'RENDER' no existe,
-# lo que indica que estás en un entorno local.
-DEBUG = 'RENDER' not in os.environ
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 # Se configura el host permitido dinámicamente.
@@ -104,30 +100,13 @@ else:
     }
 
 # Database
-# Se usará la configuración local solo cuando DEBUG sea True.
-if not DEBUG:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default='sqlite:///db.sqlite3',
-            conn_max_age=600
-        )
-    }
-else:
-    # Esta es tu configuración original para desarrollo local.
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        },
-        'app_db': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'app.db',
-        }
-    }
-
-
-# Database router configuration
-DATABASE_ROUTERS = ['mi_app.routers.AppRouter'] 
+# Se usa dj_database_url.config() para parsear la URL completa de la base de datos
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
