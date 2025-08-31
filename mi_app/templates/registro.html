@@ -20,7 +20,7 @@
 
     <div class="form-content">
         <h1>Registro</h1>
-        <form action="" method="POST">
+        <form action="{% url 'registro' %}" method="POST">
         {% csrf_token %}
         <div class="ts-input-group">
             <label class="ts-label" for="usuario"></label>

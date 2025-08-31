@@ -18,12 +18,12 @@ def registro(request):
         if usuarios.objects.filter(correo=correo).exists():
             return render(request, 'registro.html', {
                 'error': 'Este correo ya existe'
-             })
+            })
         contraseña_encriptada = make_password(contraseña_plana)
 
         nuevo_usuario= usuarios(usuario=usuario, correo=correo, contraseña=contraseña_encriptada)
         nuevo_usuario.save()
-        return redirect ('registro')
+        return redirect ('login')
     else:
         return render(request, 'registro.html') 
 
@@ -87,7 +87,7 @@ def sala(request, sala_id):
         usuario_actual = usuarios.objects.get(id=usuario_id)
         sala = Sala.objects.get(id=sala_id)
         return render(request, 'chat/sala.html', {'sala': sala,
-                                                  'usuario': usuario_actual})
+                                                   'usuario': usuario_actual})
     except Sala.DoesNotExist:
         return render(request, 'chat/sala.html', {'salas': sala,
-                                                  'error': 'Esta sala no funciona'})
+                                                   'error': 'Esta sala no funciona'})
