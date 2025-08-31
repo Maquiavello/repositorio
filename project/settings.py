@@ -24,9 +24,17 @@ if not DEBUG:
     RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
     if RENDER_EXTERNAL_HOSTNAME:
         ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-        CSRF_TRUSTED_ORIGINS = ['https://' + RENDER_EXTERNAL_HOSTNAME]
 else:
-    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.00.1:8000']
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.0.0.1:8000']
+    
+# Configuración de CORS y CSRF para producción
+# Esta configuración se aplicará tanto en desarrollo como en producción
+# para simplificar la lógica y evitar errores.
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+CORS_ALLOWED_ORIGINS = [
+    'https://*.onrender.com'
+]
+CORS_ALLOW_CREDENTIALS = True
     
 # Application definition
 INSTALLED_APPS = [
@@ -94,19 +102,6 @@ else:
             'BACKEND': 'channels.layers.InMemoryChannelLayer', 
         },
     }
-
-
-# Configuración CORS
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-    CORS_ALLOW_CREDENTIALS = True
-else:
-    # Configurar CORS de forma más restrictiva en producción
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CORS_ORIGIN', ''),
-    ]
-    CORS_ALLOW_CREDENTIALS = True
-
 
 # Database
 # Se usará la configuración local solo cuando DEBUG sea True.
