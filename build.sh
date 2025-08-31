@@ -11,3 +11,5 @@ python manage.py collectstatic --noinput
 
 # Ejecutar migraciones
 python manage.py migrate
+
+python manage.py create_rooms
