@@ -21,8 +21,10 @@ ALLOWED_HOSTS = []
 # Si estás en Render (DEBUG es False), permite la URL de Render.
 # En desarrollo (DEBUG es True), permite localhost y 127.0.0.1.
 if not DEBUG:
-    ALLOWED_HOSTS += [os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')]
-    CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+        CSRF_TRUSTED_ORIGINS = ['https://' + RENDER_EXTERNAL_HOSTNAME]
 else:
     ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.00.1:8000']
     
@@ -103,6 +105,8 @@ else:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CORS_ORIGIN', ''),
     ]
+    CORS_ALLOW_CREDENTIALS = True
+
 
 # Database
 # Se usará la configuración local solo cuando DEBUG sea True.
