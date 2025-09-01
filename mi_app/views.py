@@ -23,6 +23,10 @@ def registro(request):
 
         nuevo_usuario= usuarios(usuario=usuario, correo=correo, contraseña=contraseña_encriptada)
         nuevo_usuario.save()
+        print("Usuario registrado exitosamente")
+        print(f"Usuario: {usuario}")
+        print(f"Correo: {correo}")
+        print(f"Contraseña encriptada: {contraseña_encriptada}")
         return redirect ('login')
     else:
         return render(request, 'registro.html') 
@@ -63,6 +67,7 @@ def login(request):
 def logout(request):
     try:
         del request.session['usuario_id']
+        print("Sesión cerrada correctamente.")
     except KeyError:
         pass
     return redirect('login')

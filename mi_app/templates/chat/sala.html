@@ -10,6 +10,7 @@
         Regresar
     </a>
 <div class="chat-main-container">
+    <input type="hidden" id="sala-id" value="{{ sala.id }}">
 
     <div class="ts-chat-container">
         <div class="chat-header-bar">
@@ -29,26 +30,26 @@
                 </div>
 
             <div class="ts-message-inner">
-        
+            
 
-             </div>
+            </div>
         </div>
 
         <div class="ts-input-container">
-    <div class="input-options">
-        <span class="input-option">•••</span>
-    </div>
+            <div class="input-options">
+                <span class="input-option">•••</span>
+            </div>
     
-    <div class="input-with-button">
-        <textarea class="ts-message-input" id="message" placeholder="Pregunta cualquier cosa."></textarea>
-        <button class="ts-send-button" id="btnMessage">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-    </div>
-</div>
+        <div class="input-with-button">
+            <textarea class="ts-message-input" id="message" placeholder="Pregunta cualquier cosa."></textarea>
+            <button class="ts-send-button" id="btnMessage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        </div>
     </div>
 </div>
 
