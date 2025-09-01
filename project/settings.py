@@ -12,16 +12,17 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Manejo de ALLOWED_HOSTS de forma dinámica y segura.
-# En producción (DEBUG=False), se lee la URL desde las variables de entorno de Render.
-# En desarrollo (DEBUG=True), se permite localhost y 127.0.0.1.
+ALLOWED_HOSTS = []
+# Se configura el host permitido dinámicamente.
+# Si estás en Render (DEBUG es False), permite la URL de Render.
+# En desarrollo (DEBUG es True), permite localhost y 127.0.0.1.
 if not DEBUG:
-    # Lee la lista de hosts permitidos de la variable de entorno,
-    # que debe ser una cadena de texto separada por comas.
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 else:
-    ALLOWED_HOSTS = ['maquiavellichat.onrender.com']
-
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.0.0.1:8000']
+    
 # Configuración de CORS y CSRF para producción
 # Esta configuración se aplicará tanto en desarrollo como en producción
 # para simplificar la lógica y evitar errores.
@@ -30,19 +31,19 @@ CORS_ALLOWED_ORIGINS = [
     'https://*.onrender.com'
 ]
 CORS_ALLOW_CREDENTIALS = True
-
+    
 # Application definition
 INSTALLED_APPS = [
-    'daphne',
+    'daphne', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
+    'channels', 
     'corsheaders',
-    'mi_app',
+    'mi_app', 
 ]
 
 MIDDLEWARE = [
@@ -94,7 +95,7 @@ else:
     # Usar capa en memoria para desarrollo local
     CHANNEL_LAYERS = {
         'default': {
-            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+            'BACKEND': 'channels.layers.InMemoryChannelLayer', 
         },
     }
 
