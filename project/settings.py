@@ -12,16 +12,14 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
-# Se configura el host permitido dinámicamente.
-# Si estás en Render (DEBUG es False), permite la URL de Render.
-# En desarrollo (DEBUG es True), permite localhost y 127.0.0.1.
+# Esta es la configuración clave para ALLOWED_HOSTS.
+# Lee la lista de hosts permitidos de la variable de entorno,
+# que debe ser una cadena de texto separada por comas.
 if not DEBUG:
-    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-    if RENDER_EXTERNAL_HOSTNAME:
-        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 else:
-    ALLOWED_HOSTS += ['localhost', '127.0.0.1', '127.0.0.1:8000']
+    # En desarrollo, se permiten localhost y 127.0.0.1.
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '127.0.0.1:8000']
     
 # Configuración de CORS y CSRF para producción
 # Esta configuración se aplicará tanto en desarrollo como en producción
