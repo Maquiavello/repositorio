@@ -375,7 +375,7 @@ body {
   gap: 0.5rem;
   box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
   /* ✅ CAMBIO CLAVE: Agregamos un margen negativo para moverlo a la izquierda */
-  margin-right: -10px; 
+  margin-right: 14px; 
 }
 
 .ts-dropdown-button:hover {
