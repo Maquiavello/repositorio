@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Lista de nombres de salas que deseas crear
-        room_names = ['Sala 1', 'Sala 2', 'Sala 3']
+        room_names = ['Sala 1', 'Sala 2', 'Sala 3', 'Sala 4']
         
         # Itera sobre la lista y crea cada sala si no existe ya
         for room_name in room_names:
@@ -27,3 +27,4 @@ class Command(BaseCommand):
             except Exception as e:
                 # Si ocurre un error, lo registramos y continuamos
                 self.stdout.write(self.style.ERROR(f'Error al crear la sala "{room_name}": {e}'))
+
