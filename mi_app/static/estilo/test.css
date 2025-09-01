@@ -1,3 +1,6 @@
+/* ==================================== */
+/* 1. VARIABLES Y RESET DE ESTILOS      */
+/* ==================================== */
 :root {
   --primary-blue: #2563eb;
   --dark-blue: #1e40af;
@@ -82,27 +85,25 @@ body {
 
 .chat-header-bar {
   display: flex;
-  /* Ya no necesitamos space-between, usaremos margin-left: auto */
-  justify-content: flex-start; /* Asegura que el contenido normal empiece a la izquierda */
+  justify-content: space-between; /* Mantenemos este para separar elementos si hay más */
   align-items: center;
-  padding: 1rem 1.5rem; /* Padding base */
+  padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--gray-100);
   border-radius: 1.5rem 1.5rem 0 0;
   background: var(--white);
   flex-shrink: 0;
-  /* ✅ Añadimos padding-left para hacer espacio para el botón fijo */
-  /* Calculamos el ancho del botón (padding + gap + contenido) más su 'left' y un margen extra */
-  padding-left: calc(1rem + 0.7rem + 1.3rem + 0.5rem + 1rem); /* left:1rem + (padding-x del botón) + gap + espacio extra */
+  /* ✅ Eliminamos el padding izquierdo complejo y usamos uno simple para evitar solapamientos */
+  padding-left: 6.5rem;
 }
 
 .chat-header-user {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  /* ✅ Empuja este elemento a la derecha todo lo que pueda */
-  margin-left: auto; 
-  /* ✅ Añadimos un margen derecho para que no se pegue al borde derecho en móvil */
-  margin-right: 1rem; 
+  /* ✅ CAMBIO CLAVE: Eliminamos `margin-left: auto` para que no se empuje a la derecha */
+  margin-left: 0;
+  /* Y agregamos un pequeño margen derecho para que no se pegue al borde */
+  margin-right: 1rem;
 }
 
 .chat-header-avatar {
@@ -373,6 +374,8 @@ body {
   align-items: center;
   gap: 0.5rem;
   box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+  /* ✅ CAMBIO CLAVE: Agregamos un margen negativo para moverlo a la izquierda */
+  margin-right: -10px; 
 }
 
 .ts-dropdown-button:hover {
@@ -441,6 +444,8 @@ body {
   margin-bottom: 4px;
 }
 
+
+
 /* ==================================== */
 /* 3. MEDIA QUERIES (TABLETS Y ESCRITORIO) */
 /* ==================================== */
@@ -459,19 +464,17 @@ body {
   }
 
   .ts-back-button {
-    top: 2rem; /* Posición para escritorio */
-    left: 2rem; /* Posición para escritorio */
+    top: 2rem;
+    left: 2rem;
   }
 
   .chat-header-bar {
-    /* En escritorio, el botón está más a la izquierda, podemos reducir el padding-left */
-    padding-left: 1.5rem; 
+    padding-left: 1.5rem;
   }
   
   .chat-header-user {
-    /* En escritorio, queremos que esté a la izquierda junto al avatar */
-    margin-left: 0; 
-    margin-right: 0; /* Aseguramos que no haya margen derecho extra */
+    margin-left: 0;
+    margin-right: 0;
   }
   
   .ts-messages-container {
