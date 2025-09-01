@@ -1,8 +1,11 @@
 $(function(){
-    console.log(sala_id);
-
     // Determinar el protocolo adecuado (wss para HTTPS, ws para HTTP)
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+
+    // Obtener el ID de la sala del input oculto
+    const sala_id = document.getElementById('sala-id').value;
+    console.log(sala_id);
+
     var url = protocol + '://' + window.location.host + '/ws/sala/' + sala_id + '/';
     console.log(url);
 
